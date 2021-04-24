@@ -4,6 +4,41 @@ void main() {
   runApp(MyApp());
 }
 
+class MyFirstWidgetStateless extends StatelessWidget {
+  int _counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    _counter++;
+    print(_counter);
+    return Container(
+      child: Center(
+        child: Text("Hello!"),
+      ),
+    );
+  }
+}
+
+class MyFirstWidgetStateful extends StatefulWidget {
+
+  @override
+  _MyFirstWidgetStatefulState createState() => _MyFirstWidgetStatefulState();
+}
+
+class _MyFirstWidgetStatefulState extends State<MyFirstWidgetStateful> {
+  int _counter = 0;
+  @override
+  Widget build(BuildContext context) {
+    _counter++;
+    print(_counter);
+    return Container(
+      child: Center(
+        child: Text("Hello!"),
+      ),
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -22,7 +57,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyFirstWidgetStateless(),
+      home: MyFirstWidgetStateful(),
     );
   }
 }
