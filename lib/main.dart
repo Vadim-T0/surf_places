@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
+}
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyFirstWidgetStateless(),
+      title: 'App Title',
+    );
+  }
 }
 
 class MyFirstWidgetStateless extends StatelessWidget {
