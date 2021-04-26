@@ -26,18 +26,27 @@ class MyFirstWidgetStateless extends StatelessWidget {
   Widget build(BuildContext context) {
     _counter++;
     print(_counter);
+
+    Type getContextType() => context.runtimeType;
+
     return Container(
       child: Center(
         child: Text("Hello!"),
       ),
     );
   }
+
+//  Type getContextType() => context.runtimeType;
+//  Error: The getter 'context' isn't defined for the class 'MyFirstWidgetStateless'.
 }
 
 class MyFirstWidgetStateful extends StatefulWidget {
 
   @override
   _MyFirstWidgetStatefulState createState() => _MyFirstWidgetStatefulState();
+
+//  Type getContextType() => context.runtimeType;
+//  Error: The getter 'context' isn't defined for the class 'MyFirstWidgetStateful'.
 }
 
 class _MyFirstWidgetStatefulState extends State<MyFirstWidgetStateful> {
@@ -52,6 +61,8 @@ class _MyFirstWidgetStatefulState extends State<MyFirstWidgetStateful> {
       ),
     );
   }
+
+  Type getContextType() => context.runtimeType;
 }
 
 class MyApp extends StatelessWidget {
