@@ -1,7 +1,68 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
+}
+
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyFirstWidgetStateless(),
+      title: 'App Title',
+    );
+  }
+}
+
+class MyFirstWidgetStateless extends StatelessWidget {
+  int _counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    _counter++;
+    print(_counter);
+
+    Type getContextType() => context.runtimeType;
+
+    return Container(
+      child: Center(
+        child: Text("Hello!"),
+      ),
+    );
+  }
+
+//  Type getContextType() => context.runtimeType;
+//  Error: The getter 'context' isn't defined for the class 'MyFirstWidgetStateless'.
+}
+
+class MyFirstWidgetStateful extends StatefulWidget {
+
+  @override
+  _MyFirstWidgetStatefulState createState() => _MyFirstWidgetStatefulState();
+
+//  Type getContextType() => context.runtimeType;
+//  Error: The getter 'context' isn't defined for the class 'MyFirstWidgetStateful'.
+}
+
+class _MyFirstWidgetStatefulState extends State<MyFirstWidgetStateful> {
+  int _counter = 0;
+  @override
+  Widget build(BuildContext context) {
+    _counter++;
+    print(_counter);
+    return Container(
+      child: Center(
+        child: Text("Hello!"),
+      ),
+    );
+  }
+
+  Type getContextType() => context.runtimeType;
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +83,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyHomePage(title: 'Flutter Demo Home Page'),
+      //home: MyFirstWidgetStateless(),
+      home: MyFirstWidgetStateful(),
     );
   }
 }
