@@ -15,19 +15,22 @@ class _SightListScreenState extends State<SightListScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(
-          "Список\nинтересных мест",
-          maxLines: 2,
-          style: TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.left,
+        title: Padding(
+          padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы из Figma
+          child: Text(
+            "Список\nинтересных мест",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 32,
+              height: 36 / 32,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.left,
+          ),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        titleSpacing: 20,
-        toolbarHeight: 200,
-      ),
-      body: Center(
-        //   child: Text("Hello!"),
+        backgroundColor: Colors.transparent, // Прозрачный AppBar
+        elevation: 0, // Тень
+        toolbarHeight: 136, // Из Figma 64+72
       ),
     );
   }
