@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:surf_places/ui/const/colors.dart';
+import 'package:surf_places/ui/const/text_styles.dart';
 
-// Экран приложения.
+/// Экран приложения.
 class SightListScreen extends StatefulWidget {
   @override
   _SightListScreenState createState() => _SightListScreenState();
@@ -19,20 +21,15 @@ class _SightListScreenState extends State<SightListScreen> {
             padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы из Figma
             child: RichText(
               text: TextSpan(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32,
-                  height: 36 / 32,
-                  fontWeight: FontWeight.w700,
-                ),
+                style: textAppBar,
                 children: [
                   TextSpan(
                       text: 'С',
-                      style: TextStyle(color: const Color(0xff4caf50))),
+                      style: TextStyle(color: fontGreen)),
                   TextSpan(text: 'писок\n'),
                   TextSpan(
                       text: 'и',
-                      style: TextStyle(color: const Color(0xfffbc02d))),
+                      style: TextStyle(color: fontYellow)),
                   TextSpan(text: 'нтересных мест'),
                 ],
                 //      textAlign: TextAlign.left,
@@ -43,6 +40,6 @@ class _SightListScreenState extends State<SightListScreen> {
           elevation: 0, // Тень
           toolbarHeight: 136, // Из Figma 64+72
         ),
-        backgroundColor: Colors.white);
+        backgroundColor: scaffoldBackground);
   }
 }
