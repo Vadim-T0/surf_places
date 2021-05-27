@@ -1,9 +1,8 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_places/ui/const/colors.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
+import 'package:surf_places/mocks.dart';
+import 'package:surf_places/ui/screen/sight_card.dart';
 
 /// Экран приложения.
 class SightListScreen extends StatefulWidget {
@@ -17,28 +16,20 @@ class _SightListScreenState extends State<SightListScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы из Figma
-            child: RichText(
-              text: TextSpan(
-                style: textAppBar,
-                children: [
-                  TextSpan(
-                      text: 'С',
-                      style: TextStyle(color: fontGreen)),
-                  TextSpan(text: 'писок\n'),
-                  TextSpan(
-                      text: 'и',
-                      style: TextStyle(color: fontYellow)),
-                  TextSpan(text: 'нтересных мест'),
-                ],
-                //      textAlign: TextAlign.left,
-              ),
-            ),
+          titleSpacing: 0, // Убираем отступы слева и справа от title (leading, actions)
+          backgroundColor: Colors.transparent, // Делаем AppBar прозрачным
+          elevation: 0, // Убираем тень у AppBar
+          toolbarHeight: 112, // Высота AppBar (по Figma 40+72)
+          title: Container(
+            padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы для title (Figma)
+            alignment: Alignment.bottomLeft,
+            child: Text("Список\nинтересных мест", style: textAppBar),
           ),
-          backgroundColor: Colors.transparent, // Прозрачный AppBar
-          elevation: 0, // Тень
-          toolbarHeight: 136, // Из Figma 64+72
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: mocks.map((sight) => SightCard(sight)).toList(),
+          ),
         ),
         backgroundColor: scaffoldBackground);
   }
