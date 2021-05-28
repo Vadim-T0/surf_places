@@ -3,6 +3,7 @@ import 'package:surf_places/domain/sight.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
 import 'package:surf_places/ui/const/colors.dart';
 
+/// Карточка места.
 class SightCard extends StatelessWidget {
   final Sight sight;
 
@@ -53,9 +54,7 @@ class SightCard extends StatelessWidget {
               width: double.infinity,
               height: 92,
               padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-              decoration: BoxDecoration(
-                  //border: Border.all(color: Colors.yellow),
-                  color: cardBackground),
+              decoration: BoxDecoration(color: cardBackground),
               child: Column(
                 children: [
                   Container(
@@ -69,7 +68,6 @@ class SightCard extends StatelessWidget {
                   ),
                   Container(
                     // Описание достопримечательности
-                   // height: 18,
                     padding: EdgeInsets.only(top: 2),
                     width: double.infinity,
                     child: Text(this.sight.details,

@@ -11,6 +11,8 @@ const Color fontGreen = Color(0xff4caf50),
     textColorSecondary = Color(0xff3B3E5B),
     textColorSecondary2 = Color(0xff7C7E92),
 
+    buttonGreen = Color(0xff4CAF50),
+
     cardBackground = Color(0xfff5f5f5),
     scaffoldBackground = Color(0xffffffff);
 
