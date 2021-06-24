@@ -1,9 +1,10 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:surf_places/ui/const/colors.dart';
+import 'package:surf_places/ui/const/text_styles.dart';
+import 'package:surf_places/mocks.dart';
+import 'package:surf_places/ui/screen/sight_card.dart';
 
-// Экран приложения.
+/// Экран приложения.
 class SightListScreen extends StatefulWidget {
   @override
   _SightListScreenState createState() => _SightListScreenState();
@@ -15,34 +16,21 @@ class _SightListScreenState extends State<SightListScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы из Figma
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32,
-                  height: 36 / 32,
-                  fontWeight: FontWeight.w700,
-                ),
-                children: [
-                  TextSpan(
-                      text: 'С',
-                      style: TextStyle(color: const Color(0xff4caf50))),
-                  TextSpan(text: 'писок\n'),
-                  TextSpan(
-                      text: 'и',
-                      style: TextStyle(color: const Color(0xfffbc02d))),
-                  TextSpan(text: 'нтересных мест'),
-                ],
-                //      textAlign: TextAlign.left,
-              ),
-            ),
+          titleSpacing: 0, // Убираем отступы слева и справа от title (leading, actions)
+          backgroundColor: Colors.transparent, // Делаем AppBar прозрачным
+          elevation: 0, // Убираем тень у AppBar
+          toolbarHeight: 112, // Высота AppBar (по Figma 40+72)
+          title: Container(
+            padding: EdgeInsets.fromLTRB(16, 40, 16, 0), // Отступы для title (Figma)
+            alignment: Alignment.bottomLeft,
+            child: Text("Список\nинтересных мест", style: textAppBar),
           ),
-          backgroundColor: Colors.transparent, // Прозрачный AppBar
-          elevation: 0, // Тень
-          toolbarHeight: 136, // Из Figma 64+72
         ),
-        backgroundColor: Colors.white);
+        body: SingleChildScrollView(
+          child: Column(
+            children: mocks.map((sight) => SightCard(sight)).toList(),
+          ),
+        ),
+        backgroundColor: scaffoldBackground);
   }
 }
