@@ -19,34 +19,16 @@ class SightCard extends StatelessWidget {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Container(
-                  // Заглушка вместо фотографии
-                  width: double.infinity,
-                  height: 96,
-                  decoration: BoxDecoration(color: Colors.grey),
-                ),
+                _SightPhoto(),
                 Positioned(
-                  // Тип достопримечательности
                   left: 16,
                   top: 16,
-                  child: Container(
-                    // Контейнер чтобы ограничить длину текста
-                    width: 200,
-                    child: Text(this.sight.type.toLowerCase(),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: textBold14White),
-                  ),
+                  child: _SightType(this.sight.type.toLowerCase()),
                 ),
                 Positioned(
-                  // Заглушка вместо иконки-сердца
                   right: 18,
                   top: 19,
-                  child: Container(
-                    width: 20,
-                    height: 18,
-                    decoration: BoxDecoration(color: Colors.blueGrey),
-                  ),
+                  child: _ButtonHeart(),
                 ),
               ],
             ),
@@ -56,31 +38,110 @@ class SightCard extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
               decoration: BoxDecoration(color: cardBackground),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    // Название достопримечательности
-                    width: double.infinity,
-                    height: 40,
-                    child: Text(this.sight.name,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: textMedium16Secondary),
-                  ),
-                  Container(
-                    // Описание достопримечательности
-                    padding: EdgeInsets.only(top: 2),
-                    width: double.infinity,
-                    child: Text(this.sight.details,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: textRegular14Secondary2),
-                  ),
+                  _SightName(this.sight.name),
+                  SizedBox(height: 2),
+                  _SightDetails(this.sight.details),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Фотография места
+class _SightPhoto extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 96,
+      decoration: BoxDecoration(color: Colors.grey),
+    );
+  }
+}
+
+/// Тип достопримечательности
+class _SightType extends StatelessWidget {
+  final String type;
+
+  _SightType(this.type);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      child: Text(this.type.toLowerCase(),
+          overflow: TextOverflow.ellipsis, maxLines: 1, style: textBold14White),
+    );
+  }
+}
+
+/// Название места в карточке
+class _SightName extends StatelessWidget {
+  final String name;
+
+  _SightName(this.name);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //width: double.infinity,
+      //height: 40,
+      //child: Text(this.name,
+      //overflow: TextOverflow.ellipsis,
+      //maxLines: 2,
+      //style: textMedium16Secondary),
+      decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minWidth: 148, maxWidth: 148), // Ширина половины карточки: 148 = 296/2, 296 - ширина текста в карточке по дизайну.
+        child: Text(this.name,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+            style: textMedium16Secondary),
+      ),
+    );
+  }
+}
+
+/// Описание места в карточке
+class _SightDetails extends StatelessWidget {
+  final String details;
+
+  _SightDetails(this.details);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //width: double.infinity,
+      //child: Text(this.details,
+      //overflow: TextOverflow.ellipsis,
+      //maxLines: 1,
+      //style: textRegular14Secondary2),
+      decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minWidth: 148, maxWidth: 148), // Ширина половины карточки: 148 = 296/2, 296 - ширина текста в карточке по дизайну.
+        child: Text(this.details,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: textRegular14Secondary2),
+      ),
+    );
+  }
+}
+
+/// Кнопка "Сердце"
+class _ButtonHeart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20,
+      height: 18,
+      decoration: BoxDecoration(color: Colors.blueGrey),
     );
   }
 }
