@@ -33,8 +33,9 @@ class _SightDetailsState extends State<SightDetails> {
                   ),
                 ],
               ),
+              SizedBox(height: 24),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                 child: Column(
                   children: [
                     Container(

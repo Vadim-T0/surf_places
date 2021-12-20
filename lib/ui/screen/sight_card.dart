@@ -35,11 +35,12 @@ class SightCard extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 92,
-              padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
               decoration: BoxDecoration(color: cardBackground),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(height: 16),
                   _SightName(this.sight.name),
                   SizedBox(height: 2),
                   _SightDetails(this.sight.details),
@@ -90,20 +91,12 @@ class _SightName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: double.infinity,
+      width: double.infinity,
       //height: 40,
-      //child: Text(this.name,
-      //overflow: TextOverflow.ellipsis,
-      //maxLines: 2,
-      //style: textMedium16Secondary),
-      decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(minWidth: 148, maxWidth: 148), // Ширина половины карточки: 148 = 296/2, 296 - ширина текста в карточке по дизайну.
-        child: Text(this.name,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: textMedium16Secondary),
-      ),
+      child: Text(this.name,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+          style: textMedium16Secondary),
     );
   }
 }
@@ -117,19 +110,11 @@ class _SightDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //width: double.infinity,
-      //child: Text(this.details,
-      //overflow: TextOverflow.ellipsis,
-      //maxLines: 1,
-      //style: textRegular14Secondary2),
-      decoration: BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(minWidth: 148, maxWidth: 148), // Ширина половины карточки: 148 = 296/2, 296 - ширина текста в карточке по дизайну.
-        child: Text(this.details,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: textRegular14Secondary2),
-      ),
+      width: double.infinity,
+      child: Text(this.details,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: textRegular14Secondary2),
     );
   }
 }
