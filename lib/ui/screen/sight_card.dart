@@ -11,43 +11,46 @@ class SightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          children: <Widget>[
-            Stack(
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            color: cardBackground,
+            child: Column(
               children: <Widget>[
-                _SightPhoto(),
-                Positioned(
-                  left: 16,
-                  top: 16,
-                  child: _SightType(this.sight.type.toLowerCase()),
+                Stack(
+                  children: <Widget>[
+                    _SightPhoto(),
+                    Positioned(
+                      left: 16,
+                      top: 16,
+                      child: _SightType(this.sight.type.toLowerCase()),
+                    ),
+                    Positioned(
+                      right: 18,
+                      top: 19,
+                      child: _ButtonHeart(),
+                    ),
+                  ],
                 ),
-                Positioned(
-                  right: 18,
-                  top: 19,
-                  child: _ButtonHeart(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 16),
+                      _SightName(this.sight.name),
+                      SizedBox(height: 2),
+                      _SightDetails(this.sight.details),
+                    ],
+                  ),
                 ),
               ],
             ),
-            Container(
-              width: double.infinity,
-              height: 92,
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
-              decoration: BoxDecoration(color: cardBackground),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 16),
-                  _SightName(this.sight.name),
-                  SizedBox(height: 2),
-                  _SightDetails(this.sight.details),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
