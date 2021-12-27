@@ -2,14 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
 import 'package:surf_places/ui/const/colors.dart';
+import 'package:surf_places/ui/const/strings.dart';
+import 'package:surf_places/mocks.dart';
+import 'package:surf_places/domain/sight.dart';
 
 /// Экран детализации места.
-class SightDetails extends StatefulWidget {
-  @override
-  _SightDetailsState createState() => _SightDetailsState();
-}
+class SightDetails extends StatelessWidget {
+  final Sight card;
 
-class _SightDetailsState extends State<SightDetails> {
+  const SightDetails({Key key, this.card}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,13 +43,12 @@ class _SightDetailsState extends State<SightDetails> {
                     Container(
                       // Название места
                       width: double.infinity,
-                      child: Text('Пряности и радости',
-                          style: textBold24Secondary),
+                      child: Text('${card.name}', style: textBold24Secondary),
                     ),
                     SizedBox(height: 2),
                     Row(
                       children: [
-                        Text('ресторан', style: textBold14),
+                        Text('${card.type}', style: textBold14),
                         // Тип места
                         SizedBox(width: 16),
                         Text('закрыто до 09:00',
@@ -59,8 +60,7 @@ class _SightDetailsState extends State<SightDetails> {
                       // Описание места
                       margin: EdgeInsets.only(top: 24, bottom: 24),
                       width: double.infinity,
-                      child: Text(
-                          'Пряный вкус радостной жизни вместе с шеф-поваром Изо Дзандзава, благодаря которой у гостей ресторана есть возможность выбирать из двух направлений: европейского и восточного',
+                      child: Text('${card.details}',
                           style: textRegular14Secondary),
                     ),
                     _ButtonRoute(),
@@ -114,7 +114,7 @@ class _ButtonRoute extends StatelessWidget {
         width: double.infinity,
         height: 48,
         decoration: BoxDecoration(color: buttonGreen),
-        child: Text('Построить маршрут'.toUpperCase(),
+        child: Text(AppStrings.routeButton.toUpperCase(),
             style: textBold14WhiteSpacing),
       ),
     );
@@ -131,7 +131,7 @@ class _ButtonPlan extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
       ),
-      child: Text('Запланировать', style: textRegular14SecondaryInactive),
+      child: Text(AppStrings.planButton, style: textRegular14SecondaryInactive),
     );
   }
 }
@@ -146,7 +146,7 @@ class _ButtonFavorite extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
       ),
-      child: Text('В Избранное', style: textRegular14Secondary),
+      child: Text(AppStrings.favoriteButton, style: textRegular14Secondary),
     );
   }
 }

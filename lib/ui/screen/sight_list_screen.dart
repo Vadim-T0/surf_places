@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:surf_places/ui/const/colors.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
+import 'package:surf_places/ui/const/strings.dart';
 import 'package:surf_places/mocks.dart';
 import 'package:surf_places/ui/screen/sight_card.dart';
 
@@ -15,7 +16,7 @@ class _SightListScreenState extends State<SightListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: MyAppBar(height: 112, title: 'Список\nинтересных мест'),
+        appBar: MyAppBar(height: 112, title: AppStrings.appbarTitle),
         body: SingleChildScrollView(
           child: Column(
             children: mocks.map((sight) => SightCard(sight)).toList(),
