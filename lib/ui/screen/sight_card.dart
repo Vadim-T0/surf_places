@@ -11,76 +11,125 @@ class SightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Column(
-          children: <Widget>[
-            Stack(
+    return AspectRatio(
+      aspectRatio: 3 / 2,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            color: cardBackground,
+            child: Column(
               children: <Widget>[
-                Container(
-                  // Заглушка вместо фотографии
-                  width: double.infinity,
-                  height: 96,
-                  decoration: BoxDecoration(color: Colors.grey),
+                Stack(
+                  children: <Widget>[
+                    _SightPhoto(),
+                    Positioned(
+                      left: 16,
+                      top: 16,
+                      child: _SightType(this.sight.type.toLowerCase()),
+                    ),
+                    Positioned(
+                      right: 18,
+                      top: 19,
+                      child: _ButtonHeart(),
+                    ),
+                  ],
                 ),
-                Positioned(
-                  // Тип достопримечательности
-                  left: 16,
-                  top: 16,
-                  child: Container(
-                    // Контейнер чтобы ограничить длину текста
-                    width: 200,
-                    child: Text(this.sight.type.toLowerCase(),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: textBold14White),
-                  ),
-                ),
-                Positioned(
-                  // Заглушка вместо иконки-сердца
-                  right: 18,
-                  top: 19,
-                  child: Container(
-                    width: 20,
-                    height: 18,
-                    decoration: BoxDecoration(color: Colors.blueGrey),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 16),
+                      _SightName(this.sight.name),
+                      SizedBox(height: 2),
+                      _SightDetails(this.sight.details),
+                    ],
                   ),
                 ),
               ],
             ),
-            Container(
-              width: double.infinity,
-              height: 92,
-              padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-              decoration: BoxDecoration(color: cardBackground),
-              child: Column(
-                children: [
-                  Container(
-                    // Название достопримечательности
-                    width: double.infinity,
-                    height: 40,
-                    child: Text(this.sight.name,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: textMedium16Secondary),
-                  ),
-                  Container(
-                    // Описание достопримечательности
-                    padding: EdgeInsets.only(top: 2),
-                    width: double.infinity,
-                    child: Text(this.sight.details,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: textRegular14Secondary2),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+/// Фотография места
+class _SightPhoto extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 96,
+      decoration: BoxDecoration(color: Colors.grey),
+    );
+  }
+}
+
+/// Тип достопримечательности
+class _SightType extends StatelessWidget {
+  final String type;
+
+  _SightType(this.type);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      child: Text(this.type.toLowerCase(),
+          overflow: TextOverflow.ellipsis, maxLines: 1, style: textBold14White),
+    );
+  }
+}
+
+/// Название места в карточке
+class _SightName extends StatelessWidget {
+  final String name;
+
+  _SightName(this.name);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      //height: 40,
+      child: Text(this.name,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+          style: textMedium16Secondary),
+    );
+  }
+}
+
+/// Описание места в карточке
+class _SightDetails extends StatelessWidget {
+  final String details;
+
+  _SightDetails(this.details);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Text(this.details,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: textRegular14Secondary2),
+    );
+  }
+}
+
+/// Кнопка "Сердце"
+class _ButtonHeart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20,
+      height: 18,
+      decoration: BoxDecoration(color: Colors.blueGrey),
     );
   }
 }
