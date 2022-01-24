@@ -1,7 +1,10 @@
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_places/domain/sight.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
 import 'package:surf_places/ui/const/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:surf_places/ui/const/icons.dart';
 
 /// Карточка места.
 class SightCard extends StatelessWidget {
@@ -23,7 +26,7 @@ class SightCard extends StatelessWidget {
               children: <Widget>[
                 Stack(
                   children: <Widget>[
-                    _SightPhoto(),
+                    _SightPhoto(this.sight.url),
                     Positioned(
                       left: 16,
                       top: 16,
@@ -59,12 +62,32 @@ class SightCard extends StatelessWidget {
 
 /// Фотография места
 class _SightPhoto extends StatelessWidget {
+  final String url;
+
+  _SightPhoto(this.url);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 96,
-      decoration: BoxDecoration(color: Colors.grey),
+      child: Image.network(
+        this.url,
+        fit: BoxFit.cover,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent loadingProgress) {
+          if (loadingProgress == null) return child;
+
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes
+                  : null,
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -127,9 +150,6 @@ class _ButtonHeart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 20,
-      height: 18,
-      decoration: BoxDecoration(color: Colors.blueGrey),
-    );
+        width: 20, height: 18, child: SvgPicture.asset(AppIcons.heartIcon));
   }
 }
