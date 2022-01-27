@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:surf_places/ui/screen/sight_list_screen.dart';
-//import 'package:surf_places/ui/screen/sight_details.dart';
-//import 'package:surf_places/mocks.dart';
+//import 'package:surf_places/ui/screen/sight_list_screen.dart';
+import 'package:surf_places/ui/screen/sight_details.dart';
+import 'package:surf_places/mocks.dart';
 import 'package:surf_places/ui/const/strings.dart';
 
 void main() {
@@ -19,9 +19,8 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Roboto'),
-      home: SightListScreen(),
-      //home: SightDetails(card: mocks[2]),
-
+      //home: SightListScreen(),
+      home: SightDetails(card: mocks[5]),
       title: AppStrings.appTitle,
     );
   }

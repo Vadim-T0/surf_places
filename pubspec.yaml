@@ -12,18 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  flutter_svg: ^0.22.0
+  flutter_svg: ^1.0.2
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  dart_code_metrics: ^3.3.1
+  dart_code_metrics: ^4.9.1
 
 flutter:
   uses-material-design: true
 
   assets:
     - res/
+    - res/icons/
 
   fonts:
     - family: Roboto

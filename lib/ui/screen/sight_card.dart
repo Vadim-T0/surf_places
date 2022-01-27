@@ -1,7 +1,10 @@
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_places/domain/sight.dart';
 import 'package:surf_places/ui/const/text_styles.dart';
 import 'package:surf_places/ui/const/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:surf_places/ui/const/icons.dart';
 
 /// Карточка места.
 class SightCard extends StatelessWidget {
@@ -23,11 +26,11 @@ class SightCard extends StatelessWidget {
               children: <Widget>[
                 Stack(
                   children: <Widget>[
-                    _SightPhoto(),
+                    _SightPhoto(sight.url),
                     Positioned(
                       left: 16,
                       top: 16,
-                      child: _SightType(this.sight.type.toLowerCase()),
+                      child: _SightType(sight.type.toLowerCase()),
                     ),
                     Positioned(
                       right: 18,
@@ -42,9 +45,9 @@ class SightCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 16),
-                      _SightName(this.sight.name),
+                      _SightName(sight.name),
                       SizedBox(height: 2),
-                      _SightDetails(this.sight.details),
+                      _SightDetails(sight.details),
                     ],
                   ),
                 ),
@@ -59,12 +62,32 @@ class SightCard extends StatelessWidget {
 
 /// Фотография места
 class _SightPhoto extends StatelessWidget {
+  final String url;
+
+  _SightPhoto(this.url);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 96,
-      decoration: BoxDecoration(color: Colors.grey),
+      child: Image.network(
+        url,
+        fit: BoxFit.cover,
+        loadingBuilder: (BuildContext context, Widget child,
+            ImageChunkEvent loadingProgress) {
+          if (loadingProgress == null) return child;
+
+          return Center(
+            child: CircularProgressIndicator(
+              value: loadingProgress.expectedTotalBytes != null
+                  ? loadingProgress.cumulativeBytesLoaded /
+                      loadingProgress.expectedTotalBytes
+                  : null,
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -79,8 +102,12 @@ class _SightType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      child: Text(this.type.toLowerCase(),
-          overflow: TextOverflow.ellipsis, maxLines: 1, style: textBold14White),
+      child: Text(
+        type.toLowerCase(),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        style: textBold14White,
+      ),
     );
   }
 }
@@ -96,7 +123,7 @@ class _SightName extends StatelessWidget {
     return Container(
       width: double.infinity,
       //height: 40,
-      child: Text(this.name,
+      child: Text(name,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           style: textMedium16Secondary),
@@ -114,7 +141,7 @@ class _SightDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Text(this.details,
+      child: Text(details,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: textRegular14Secondary2),
@@ -129,7 +156,7 @@ class _ButtonHeart extends StatelessWidget {
     return Container(
       width: 20,
       height: 18,
-      decoration: BoxDecoration(color: Colors.blueGrey),
+      child: SvgPicture.asset(AppIcons.heartIcon),
     );
   }
 }
