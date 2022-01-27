@@ -20,8 +20,7 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Roboto'),
       //home: SightListScreen(),
-      home: SightDetails(card: mocks[2]),
-
+      home: SightDetails(card: mocks[5]),
       title: AppStrings.appTitle,
     );
   }

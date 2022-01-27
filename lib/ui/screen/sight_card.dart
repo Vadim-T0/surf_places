@@ -26,11 +26,11 @@ class SightCard extends StatelessWidget {
               children: <Widget>[
                 Stack(
                   children: <Widget>[
-                    _SightPhoto(this.sight.url),
+                    _SightPhoto(sight.url),
                     Positioned(
                       left: 16,
                       top: 16,
-                      child: _SightType(this.sight.type.toLowerCase()),
+                      child: _SightType(sight.type.toLowerCase()),
                     ),
                     Positioned(
                       right: 18,
@@ -45,9 +45,9 @@ class SightCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 16),
-                      _SightName(this.sight.name),
+                      _SightName(sight.name),
                       SizedBox(height: 2),
-                      _SightDetails(this.sight.details),
+                      _SightDetails(sight.details),
                     ],
                   ),
                 ),
@@ -72,7 +72,7 @@ class _SightPhoto extends StatelessWidget {
       width: double.infinity,
       height: 96,
       child: Image.network(
-        this.url,
+        url,
         fit: BoxFit.cover,
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent loadingProgress) {
@@ -102,8 +102,12 @@ class _SightType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      child: Text(this.type.toLowerCase(),
-          overflow: TextOverflow.ellipsis, maxLines: 1, style: textBold14White),
+      child: Text(
+        type.toLowerCase(),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+        style: textBold14White,
+      ),
     );
   }
 }
@@ -119,7 +123,7 @@ class _SightName extends StatelessWidget {
     return Container(
       width: double.infinity,
       //height: 40,
-      child: Text(this.name,
+      child: Text(name,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
           style: textMedium16Secondary),
@@ -137,7 +141,7 @@ class _SightDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Text(this.details,
+      child: Text(details,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: textRegular14Secondary2),
@@ -150,6 +154,9 @@ class _ButtonHeart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 20, height: 18, child: SvgPicture.asset(AppIcons.heartIcon));
+      width: 20,
+      height: 18,
+      child: SvgPicture.asset(AppIcons.heartIcon),
+    );
   }
 }

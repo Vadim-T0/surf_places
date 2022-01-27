@@ -23,7 +23,7 @@ class SightDetails extends StatelessWidget {
             children: <Widget>[
               Stack(
                 children: [
-                  _SightDetailsPhoto(this.card.url),
+                  _SightDetailsPhoto(card.url),
                   Positioned(
                     // Кнопка "Назад"
                     left: 16,
@@ -40,12 +40,18 @@ class SightDetails extends StatelessWidget {
                     Container(
                       // Название места
                       width: double.infinity,
-                      child: Text('${card.name}', style: textBold24Secondary),
+                      child: Text(
+                        '${card.name}',
+                        style: textBold24Secondary,
+                      ),
                     ),
                     SizedBox(height: 2),
                     Row(
                       children: [
-                        Text('${card.type}', style: textBold14),
+                        Text(
+                          '${card.type}',
+                          style: textBold14,
+                        ),
                         // Тип места
                         SizedBox(width: 16),
                         Text('закрыто до 09:00',
@@ -100,7 +106,7 @@ class _SightDetailsPhoto extends StatelessWidget {
       width: double.infinity,
       height: 360,
       child: Image.network(
-        this.url,
+        url,
         fit: BoxFit.cover,
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent loadingProgress) {
@@ -149,11 +155,16 @@ class _ButtonRoute extends StatelessWidget {
             Container(
               width: 20,
               height: 18,
-              child: SvgPicture.asset(AppIcons.goIcon, color: textWhite),
+              child: SvgPicture.asset(
+                AppIcons.goIcon,
+                color: textWhite,
+              ),
             ),
             SizedBox(width: 9),
-            Text(AppStrings.routeButton.toUpperCase(),
-                style: textBold14WhiteSpacing),
+            Text(
+              AppStrings.routeButton.toUpperCase(),
+              style: textBold14WhiteSpacing,
+            ),
           ],
         ),
       ),
@@ -177,11 +188,16 @@ class _ButtonPlan extends StatelessWidget {
           Container(
             width: 22,
             height: 19,
-            child: SvgPicture.asset(AppIcons.calendarIcon,
-                color: textColorSecondary),
+            child: SvgPicture.asset(
+              AppIcons.calendarIcon,
+              color: textColorSecondary,
+            ),
           ),
           SizedBox(width: 10),
-          Text(AppStrings.planButton, style: textRegular14SecondaryInactive),
+          Text(
+            AppStrings.planButton,
+            style: textRegular14SecondaryInactive,
+          ),
         ],
       ),
     );
@@ -204,11 +220,16 @@ class _ButtonFavorite extends StatelessWidget {
           Container(
             width: 20,
             height: 18,
-            child:
-                SvgPicture.asset(AppIcons.heartIcon, color: textColorSecondary),
+            child: SvgPicture.asset(
+              AppIcons.heartIcon,
+              color: textColorSecondary,
+            ),
           ),
           SizedBox(width: 10),
-          Text(AppStrings.favoriteButton, style: textRegular14Secondary),
+          Text(
+            AppStrings.favoriteButton,
+            style: textRegular14Secondary,
+          ),
         ],
       ),
     );
